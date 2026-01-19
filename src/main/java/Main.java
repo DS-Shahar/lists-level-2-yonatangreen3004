@@ -190,20 +190,21 @@ public static boolean ex4(Node<Integer> L) {
 }
 
 
-  public static int max0(Queue<Integer> q){
+   public static int max0(Queue<Integer> q){
         if(q.isEmpty())
             return 0;
         int x = q.head();
-        while (q.head()!=0){
+        while (!q.isEmpty() && q.head()!=0){
             if(q.head()>x){
                 x=q.head();
             }
             q.remove();
         }
+         if(!q.isEmpty()){
          q.remove();
+         }
         return x;
     }
-
     
     public static Node<Integer> listMax(Queue<Integer> q){
         Queue<Integer> qCopy = copyQueue(q);
