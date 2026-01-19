@@ -12,6 +12,19 @@ public class Main {
 		System.out.println(ex2(list));
 		System.out.println(ex3(L1, 7));
 		System.out.println(ex4(L2));
+		Queue<Integer> q2 = new Queue<>();
+		q2.insert(2);
+		q2.insert(5);
+		q2.insert(4);
+		q2.insert(0);
+		q2.insert(4);
+		q2.insert(1);
+		q2.insert(0);
+		q2.insert(3);
+		q2.insert(6);
+		q2.insert(0);
+
+		System.out.println(listMax(q2));
 	}
 
 	public static Node<Integer> buildList(int[] a) {
@@ -175,5 +188,37 @@ public static boolean ex4(Node<Integer> L) {
     }
     return true;
 }
-// יעילות: O(n^2) כאשר n = אורך הרשימה
-// כי עושים CountNum (O(n)) עבור כל איבר (n פעמים) => O(n*n)
+
+
+public static int max0(Queue<Integer> q){
+        int x = q.head();
+        while (q.head()!=0){
+            if(q.head()>x){
+                x=q.head();
+            }
+            q.remove();
+        }
+        return x;
+    }
+
+    
+    public static Node<Integer> listMax(Queue<Integer> q){
+        Queue<Integer> qCopy = copyQueue(q);
+        Node<Integer> p = new Node<Integer>(-1);
+        Node<Integer> h = p;
+        
+        while (!qCopy.isEmpty()){
+            if (qCopy.head() == 0) {
+            qCopy.remove(); 
+        } else {
+            int x=max0(qCopy);
+            Node<Integer> maxNum = new Node<Integer>(x);
+            p.setNext(maxNum);
+            p=p.getNext();
+        }
+        }
+        return h.getNext();
+    }
+
+}
+
