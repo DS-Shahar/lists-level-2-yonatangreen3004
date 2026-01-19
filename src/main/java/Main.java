@@ -190,7 +190,9 @@ public static boolean ex4(Node<Integer> L) {
 }
 
 
-public static int max0(Queue<Integer> q){
+  public static int max0(Queue<Integer> q){
+        if(q.isEmpty())
+            return 0;
         int x = q.head();
         while (q.head()!=0){
             if(q.head()>x){
@@ -198,6 +200,7 @@ public static int max0(Queue<Integer> q){
             }
             q.remove();
         }
+         q.remove();
         return x;
     }
 
@@ -208,14 +211,12 @@ public static int max0(Queue<Integer> q){
         Node<Integer> h = p;
         
         while (!qCopy.isEmpty()){
-            if (qCopy.head() == 0) {
-            qCopy.remove(); 
-        } else {
+           
             int x=max0(qCopy);
             Node<Integer> maxNum = new Node<Integer>(x);
             p.setNext(maxNum);
             p=p.getNext();
-        }
+        
         }
         return h.getNext();
     }
