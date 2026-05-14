@@ -222,5 +222,26 @@ public static boolean ex4(Node<Integer> L) {
         return h.getNext();
     }
 
+	public static Node<Integer> upSum(Node<Integer> L) {
+		Node<Integer> sumNode = new Node<Integer>(-1);
+		Node<Integer> p = L;
+		int sum=0;
+		while(p!=null) {
+			sum=0;
+			if(p.getValue()>p.getNext().getValue()) {
+				Node<Integer> L1 = new Node<Integer>(p.getValue());
+				sumNode.setNext(L1);
+			}
+			p=p.getNext();
+			while(p.getValue()<p.getNext().getValue()&&p.getNext()!=null) {
+				sum+=p.getValue();
+				p=p.getNext();
+			}
+			Node<Integer> L2 = new Node<Integer>(sum);
+			sumNode.setNext(L2);
+		}
+        return sumNode.getNext();
+	}
+
 }
 
